@@ -1,0 +1,22 @@
+.btn--create {
+  background-color: #0b7285;
+}
+
+.btn--update {
+  background-color: #2b8a3e;
+}
+
+.btn--delete {
+  background-color: #c92a2a;
+}
+
+.btn--create:hover {
+  background-color: #1098ad;
+}
+
+.btn--update:hover {
+  background-color: #37b24d;
+}
+.btn--delete:hover {
+  background-color: #fa5252;
+}

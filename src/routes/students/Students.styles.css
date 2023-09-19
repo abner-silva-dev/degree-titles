@@ -1,0 +1,100 @@
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.contaierIconMessage {
+  position: absolute;
+  cursor: pointer;
+  top: 3rem;
+  right: 1rem;
+  stroke-width: 1px;
+  background: #d3f9d8;
+  border-radius: 50%;
+  padding: 1.3rem;
+  box-shadow: 4px 4px 10px rgb(0, 0, 0, 0.2);
+}
+
+.iconMessage {
+}
+
+.iconMessageNum {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fff;
+  background-color: #c92a2a;
+  border-radius: 50%;
+  padding: 4px 10px;
+
+  position: absolute;
+  top: -0.5rem;
+  right: -1rem;
+}
+
+.studentForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.form {
+  padding: 0 4rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.6rem;
+}
+
+.studentForm h3 {
+  font-size: 2.6rem;
+  font-weight: 600;
+  letter-spacing: 0.5rem;
+  color: #1864ab;
+  text-align: center;
+  margin: 4rem 0 6rem 0;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.group label {
+  font-size: 1.8rem;
+  color: #333;
+}
+
+.group input {
+  /* border: 2px solid #6f6f6f; */
+  box-shadow: 2px 2px 10px rgb(0, 0, 0, 0.4);
+  border-radius: 11px;
+  padding: 0.5rem;
+  font-size: 1.8rem;
+  font-family: inherit;
+}
+
+.group select {
+  width: 100%;
+  height: 100%;
+  border: 2px solid #6f6f6f;
+  border-radius: 11px;
+  padding: 0.5rem;
+}
+
+.btnForm {
+  margin-top: 4rem;
+  row-gap: 2rem;
+  grid-column: 1/-1;
+  background-color: #1864ab;
+  box-shadow: 2px 2px 10px rgb(0, 0, 0, 0.4);
+  color: #fff;
+  padding: 1.8rem;
+  border-radius: 11px;
+
+  transition: all 200ms;
+}
+
+.btnForm:hover {
+  background-color: #228be6;
+}

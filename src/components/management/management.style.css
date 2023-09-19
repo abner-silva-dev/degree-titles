@@ -1,0 +1,58 @@
+.management {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #e6fcf5;
+
+  width: 100%;
+  margin: 2rem 0;
+  padding-bottom: 4rem;
+  border-radius: 11px;
+  box-shadow: 2px 2px 5px 4px rgb(0, 0, 0, 0.05);
+}
+
+.options {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2.4rem 4rem;
+}
+
+.options__checkbox {
+  transform: scale(1.5);
+  padding: 0.5rem;
+}
+
+.options__btn {
+  display: flex;
+  gap: 2.4rem;
+}
+
+.list-data {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  overflow-y: scroll;
+
+  width: 90%;
+  height: 50vh;
+  padding: 2rem 3.2rem;
+  border-radius: 11px;
+  box-shadow: inset 0px 0px 10px 5px rgba(0, 0, 0, 0.08);
+}
+
+.list__item {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  font-size: 2rem;
+  font-weight: 600;
+  background-color: #e67700;
+  color: #fff;
+
+  padding: 2.4rem 0;
+  border-radius: 11px;
+  box-shadow: 2px 2px 5px 4px rgb(0, 0, 0, 0.05);
+}
