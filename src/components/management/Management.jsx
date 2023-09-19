@@ -1,9 +1,9 @@
 import "./management.style.css";
 
-import { useState } from "react";
-import Portal from "../popUpCreateStudent/portal";
-import PopUpCreateStudent from "../popUpCreateStudent/popUpCreateStudent";
-import Button from "../button/button.component";
+// import { useState } from "react";
+// import Portal from "../popUpCreateStudent/portal";
+// import PopUpCreateStudent from "../popUpCreateStudent/popUpCreateStudent";
+// import Button from "../button/button.component";
 
 // property identifiers: put "id" in the second position and "name" in the thirty position
 
