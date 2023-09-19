@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Managment from "../../components/management/management";
+import Managment from "../../components/management/Management";
 import Search from "../../components/search/search";
 import Button from "../../components/button/button.component";
 import Popup from "../../components/popup/Popup";
