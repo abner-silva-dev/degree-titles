@@ -9,7 +9,19 @@
   position: absolute;
   cursor: pointer;
   top: 3rem;
-  right: 1rem;
+  right: -2rem;
+  stroke-width: 1px;
+  background: #d3f9d8;
+  border-radius: 50%;
+  padding: 1.3rem;
+  box-shadow: 4px 4px 10px rgb(0, 0, 0, 0.2);
+}
+
+.contaierIconMessage--request {
+  position: absolute;
+  cursor: pointer;
+  top: 3rem;
+  right: 6rem;
   stroke-width: 1px;
   background: #d3f9d8;
   border-radius: 50%;
@@ -30,68 +42,66 @@
   right: -1rem;
 }
 
-.studentForm {
-  display: flex;
-  flex-direction: column;
-}
-
-.form {
-  padding: 0 4rem;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2.6rem;
-}
-
-.studentForm h3 {
-  font-size: 2.6rem;
-  font-weight: 600;
-  letter-spacing: 0.5rem;
-  color: #1864ab;
-  text-align: center;
-  margin: 4rem 0 6rem 0;
-}
-
-.group {
-  display: flex;
-  flex-direction: column;
-  gap: 1.4rem;
-}
-
-.group label {
-  font-size: 1.8rem;
-  color: #333;
-}
-
-.group input {
-  /* border: 2px solid #6f6f6f; */
-  box-shadow: 2px 2px 10px rgb(0, 0, 0, 0.4);
-  border-radius: 11px;
-  padding: 0.5rem;
-  font-size: 1.8rem;
-  font-family: inherit;
-}
-
-.group select {
+.options {
   width: 100%;
-  height: 100%;
-  border: 2px solid #6f6f6f;
-  border-radius: 11px;
-  padding: 0.5rem;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  padding: 2.4rem 4rem;
 }
 
-.btnForm {
-  margin-top: 4rem;
-  row-gap: 2rem;
-  grid-column: 1/-1;
-  background-color: #1864ab;
-  box-shadow: 2px 2px 10px rgb(0, 0, 0, 0.4);
-  color: #fff;
-  padding: 1.8rem;
-  border-radius: 11px;
-
-  transition: all 200ms;
+.options__filters {
 }
 
-.btnForm:hover {
-  background-color: #228be6;
+.options__filters h3 {
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 0.8em;
+  color: #087f5b;
+}
+
+.options__filters #careerFilter {
+  width: 15rem;
+}
+
+.options__container {
+  display: flex;
+  gap: 5rem;
+}
+
+.options__container label {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.options__group {
+  font-size: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 0.3rem;
+}
+
+.options__info {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #38d9a9;
+}
+
+.options__btn {
+  display: flex;
+  gap: 2.4rem;
+}
+
+.list-data {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  overflow-y: scroll;
+
+  width: 90%;
+  height: 50vh;
+  padding: 2rem 3.2rem;
+  border-radius: 11px;
+  box-shadow: inset 0px 0px 10px 5px rgba(0, 0, 0, 0.08);
 }

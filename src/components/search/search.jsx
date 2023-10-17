@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./search.style.css";
 
-const Search = ({ placeholder, onSetQuery }) => {
+const Search = ({ placeholder, onSetQuery = () => {} }) => {
   const [query, setQuery] = useState("");
 
   function handleSetQuery(e) {

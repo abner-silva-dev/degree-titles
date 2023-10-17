@@ -10,6 +10,7 @@ import Status from "./routes/status/status.component";
 
 import { AuthProvider } from "./context/authContext";
 import { ProtectedRoute } from "./components/protected-route/protected-route.component";
+import Stats from "./routes/stats/Stats";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route index element={<Students />} />
           <Route path="account" element={<Account />} />
           <Route path="status" element={<Status />} />
+          <Route path="stats" element={<Stats />} />
         </Route>
       </Routes>
     </AuthProvider>

@@ -1,9 +1,13 @@
 import { useState } from "react";
+
+import { useStudents } from "../../context/studentsContext";
 import Managment from "../../components/management/Management";
 import Search from "../../components/search/search";
 import Button from "../../components/button/button.component";
 import Popup from "../../components/popup/Popup";
-import { useStudents } from "../../context/studentsContext";
+import ColorBar from "../../components/colorBar/ColorBar";
+import StudentItem from "../../components/studentItem/StudentItem";
+import FormStudent from "../../components/formStudent/FormStudent";
 
 import "./Students.styles.css";
 
@@ -13,45 +17,74 @@ const statusColor = {
   finish: "#2b8a3e",
 };
 
+const careers = [
+  {
+    id: "ingElectrica",
+    name: "Ingeniería Eléctrica",
+    shortName: "Eléctrica",
+  },
+  {
+    id: "IngElectromecanica",
+    name: "Ingeniería Electromecánica",
+    shortName: "Electromecánica",
+  },
+  {
+    id: "IngIndustrial",
+    name: "Ingeniería Electromecanica",
+    shortName: "Electromecanica",
+  },
+  {
+    id: "IngMecanica",
+    name: "Ingeniería Mecánica",
+    shortName: "Mecánica",
+  },
+  {
+    id: "IngMecatronica",
+    name: "Ingeniería Mecatrónica",
+    shortName: "Mecatrónica",
+  },
+  {
+    id: "IngAdministracion",
+    name: "Ingeniería en Administración",
+    shortName: "Administración",
+  },
+  {
+    id: "IngGestionEmpresarial",
+    name: "Ingeniería en Gestión Empresarial",
+    shortName: "IGE",
+  },
+  {
+    id: "IngTecnologiasInformacionComunicaciones",
+    name: "Ingeniería en Tecnologías de la Información y Comunicaciones",
+    shortName: "ITICs",
+  },
+];
+
 const Students = () => {
   const [showPopup, setShowPopup] = useState(false);
-  const { students, createStudent } = useStudents();
-  const [name, setName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [motherLastName, setMotherLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [nControl, setNControl] = useState("");
-  const [status, setStatus] = useState("initial");
+  const { filter, dispatch } = useStudents();
   const [query, setQuery] = useState("");
+  const [career, setCareer] = useState("all");
+  const [status, setStatus] = useState("all");
 
-  const tempStudents = students.filter((student) =>
+  const tempStudents = filter.filter((student) =>
     `${student.nControl} ${student.name} ${student.lastName} ${student.motherLastName}`
       .toLowerCase()
-      .includes(query)
+      .includes(query.toLocaleLowerCase())
   );
 
   const togglePopup = () => {
     setShowPopup(!showPopup);
-    handleResetForm();
-  };
-
-  const handleResetForm = () => {
-    setName("");
-    setLastName("");
-    setMotherLastName("");
-    setEmail("");
-    setNControl("");
-    setStatus("initial");
   };
 
   return (
     <>
       <div className="header">
         <Search
-          placeholder={"Buscar estudiante por: Numero de control o Nombre"}
+          placeholder={"Buscar egresado por: Numero de control o Nombre"}
           onSetQuery={setQuery}
         />
-        <span className="contaierIconMessage">
+        <span className="contaierIconMessage" title="Mensajes de egresado">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -64,155 +97,101 @@ const Students = () => {
 
           <span className="iconMessageNum">1</span>
         </span>
+        <span
+          className="contaierIconMessage--request"
+          title="Solicitudes de egresados"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            className="icon iconMessage"
+          >
+            <path
+              fillRule="evenodd"
+              d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z"
+              clipRule="evenodd"
+            />
+          </svg>
+
+          <span className="iconMessageNum">1</span>
+        </span>
       </div>
+      <ColorBar />
 
       <Managment>
         <header className="options">
-          <div>
-            <label htmlFor="filter">Tipo de estatus: </label>
-            <select
-              name=""
-              id="status"
-              required={true}
-              value={status}
-              onChange={(e) => setStatus(e.target.value)}
-            >
-              <option value="all">Todos</option>
-              <option value="initial">Inicial</option>
-              <option value="secundary">Secundario</option>
-              <option value="finish">Termino</option>
-            </select>
+          <div className="options__filters">
+            <h3>Busqueda por Filtrado</h3>
+            <div className="options__container">
+              <div>
+                <label htmlFor="careerFilter">Carrera: </label>
+                <select
+                  id="careerFilter"
+                  required={true}
+                  onChange={(e) => {
+                    setCareer(e.target.value);
+                    dispatch({
+                      type: "filterStudents",
+                      payload: e.target.value,
+                    });
+                  }}
+                >
+                  <option value="all">Todas</option>
+                  {careers.map((career) => (
+                    <option value={career.id} key={career.id}>
+                      {career.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label htmlFor="filter">Tipo de estatus: </label>
+                <select
+                  name=""
+                  id="filter"
+                  required={true}
+                  value={status}
+                  onChange={(e) => {
+                    setStatus(e.target.value);
+                    dispatch({
+                      type: "filterStudents",
+                      payload: e.target.value,
+                    });
+                  }}
+                >
+                  <option value="all">Todos</option>
+                  <option value="initial">Inicial</option>
+                  <option value="secondary">Secundario</option>
+                  <option value="finish">Termino</option>
+                </select>
+              </div>
+            </div>
           </div>
 
           <div className="options__btn">
-            <Button type="create" onClick={togglePopup}>
+            <Button
+              type="create"
+              onClick={togglePopup}
+              title="Crea un nuevo estudiante"
+            >
               Crear
             </Button>
-            <Button type="delete">Eliminar</Button>
+            <Button type="delete" title="Elimina Estudiantes">
+              Eliminar
+            </Button>
           </div>
         </header>
 
         <ul className="list-data">
-          {tempStudents.map((el, i) => {
-            return (
-              <li
-                className="list__item"
-                style={{ backgroundColor: statusColor[el.status] }}
-                key={i}
-              >
-                <input type="checkbox" className="options__checkbox" />
-                <p>{el.nControl}</p>
-                <p>{`${el.name} ${el.lastName} ${el.motherLastName}`}</p>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="icon"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-                  />
-                </svg>
-              </li>
-            );
-          })}
+          {tempStudents.map((student, i) => (
+            <StudentItem key={i} student={student} />
+          ))}
         </ul>
       </Managment>
       {showPopup && (
         <Popup onClose={togglePopup}>
-          <div className="studentForm">
-            <h3>Registro de estudiante</h3>
-
-            <form
-              className="form"
-              onSubmit={() => {
-                createStudent({
-                  name,
-                  lastName,
-                  motherLastName,
-                  email,
-                  nControl,
-                  status,
-                });
-                togglePopup();
-                handleResetForm();
-              }}
-            >
-              <div className="group">
-                <label htmlFor="name">Nombre(s)</label>
-                <input
-                  id="name"
-                  type="text"
-                  placeholder="Santiago aldahir"
-                  required={true}
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-              </div>
-              <div className="group">
-                <label htmlFor="lastName">Apellido paterno</label>
-                <input
-                  id="lastName"
-                  type="text"
-                  placeholder="Rush"
-                  required={true}
-                  value={lastName}
-                  onChange={(e) => setLastName(e.target.value)}
-                />
-              </div>
-              <div className="group">
-                <label htmlFor="motherLastName">Apellido materno</label>
-                <input
-                  id="motherLastName"
-                  type="text"
-                  placeholder="Smith"
-                  required={true}
-                  value={motherLastName}
-                  onChange={(e) => setMotherLastName(e.target.value)}
-                />
-              </div>
-              <div className="group">
-                <label htmlFor="email">Correo electronico</label>
-                <input
-                  type="email"
-                  placeholder="alumn@example.com"
-                  required={true}
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </div>
-              <div className="group">
-                <label htmlFor="nControl">Numero de control</label>
-                <input
-                  type="text"
-                  placeholder="20251055"
-                  required={true}
-                  value={nControl}
-                  onChange={(e) => setNControl(e.target.value)}
-                />
-              </div>
-              <div className="group">
-                <label htmlFor="status">Estatus actual</label>
-                <select
-                  name=""
-                  id="status"
-                  required={true}
-                  value={status}
-                  onChange={(e) => setStatus(e.target.value)}
-                >
-                  <option value="initial">Inicial</option>
-                  <option value="secundary">Secundario</option>
-                  <option value="finish">Termino</option>
-                </select>
-              </div>
-
-              <button className="btnForm">Guardar registro</button>
-            </form>
-          </div>
+          <FormStudent onTogglePopup={togglePopup} />
         </Popup>
       )}
     </>

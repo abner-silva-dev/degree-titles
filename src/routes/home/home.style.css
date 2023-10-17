@@ -1,11 +1,11 @@
 .section__interactive {
-  width: 90vw;
+  /* width: 100%; */
   border-radius: 11px;
-  margin: auto auto;
+  /* margin: auto auto; */
 
   display: grid;
   grid-template-columns: 1fr 5fr;
-  overflow: hidden;
+  /* overflow: hidden; */
 
   background-color: #ffffffc8;
   box-shadow: 2px 2px 5px 4px rgb(0, 0, 0, 0.05);

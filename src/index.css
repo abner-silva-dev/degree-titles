@@ -55,12 +55,13 @@ Medium: 11px
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  box-sizing: inherit;
 }
 html {
   /* 10/16 * 100 = 62.5% */
   font-size: 62.5%;
-  overflow: hidden;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 body {
@@ -84,6 +85,11 @@ body {
 } */
 
 /* GENERAL STYLES */
+
+#root {
+  /* height: 100%; */
+  width: 100%;
+}
 
 .icon {
   width: 3rem;
