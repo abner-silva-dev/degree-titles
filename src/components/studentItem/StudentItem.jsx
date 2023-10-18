@@ -42,8 +42,6 @@ const statusColor = {
 // ];
 
 function StudentItem({ student }) {
-  console.log(student.status);
-
   return (
     <li
       className="list__item"

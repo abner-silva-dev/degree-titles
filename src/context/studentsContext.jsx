@@ -20,14 +20,20 @@ function reducer(state, action) {
         filter: [action.payload, ...state.students],
       };
     case "filterStudents":
-      if (action.payload === "all") return { ...state, filter: state.students };
+      if (action.payload.career === "all" && action.payload.status === "all")
+        return { ...state, filter: state.students };
 
       return {
         ...state,
-        filter: state.students.filter(
-          (el) =>
-            el.status === action.payload || el.career.id === action.payload
-        ),
+        filter: state.students
+          .filter((student) => {
+            if (action.payload.career === "all") return true;
+            return student.career.id === action.payload.career;
+          })
+          .filter((student) => {
+            if (action.payload.status === "all") return true;
+            return student.status === action.payload.status;
+          }),
       };
     default:
       throw new Error("Action unknow");

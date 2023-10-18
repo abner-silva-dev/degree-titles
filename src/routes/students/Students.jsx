@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { useStudents } from "../../context/studentsContext";
 import Managment from "../../components/management/Management";
@@ -77,6 +77,13 @@ const Students = () => {
     setShowPopup(!showPopup);
   };
 
+  useEffect(() => {
+    dispatch({
+      type: "filterStudents",
+      payload: { career, status },
+    });
+  }, [filter]);
+
   return (
     <>
       <div className="header">
@@ -133,7 +140,7 @@ const Students = () => {
                     setCareer(e.target.value);
                     dispatch({
                       type: "filterStudents",
-                      payload: e.target.value,
+                      payload: { career: e.target.value, status },
                     });
                   }}
                 >
@@ -156,7 +163,7 @@ const Students = () => {
                     setStatus(e.target.value);
                     dispatch({
                       type: "filterStudents",
-                      payload: e.target.value,
+                      payload: { status: e.target.value, career },
                     });
                   }}
                 >
