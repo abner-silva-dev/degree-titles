@@ -1,8 +1,8 @@
 .nav {
   overflow: hidden;
-  box-shadow: 4px 0px 6px rgb(0, 0, 0, 0.2);
-
+  box-shadow: 4px 0px 6px rgb(0, 0, 0, 0.03);
   background: #ebfbee;
+  position: relative;
 }
 
 .nav ul {
@@ -50,4 +50,11 @@ nav ul li a {
 :global(.active) {
   border-left: 6px solid #d6336c;
   z-index: 99;
+}
+
+.closeSesion {
+  background-color: red;
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
 }

@@ -7,6 +7,7 @@ const initialState = {
   // status: "loading",
   filter: [],
   students: [],
+  studentsToModify: [],
 };
 
 function reducer(state, action) {
@@ -35,6 +36,26 @@ function reducer(state, action) {
             return student.status === action.payload.status;
           }),
       };
+    case "addStudentToModify":
+      return {
+        ...state,
+        studentsToModify: [...state.studentsToModify, action.payload],
+      };
+    case "deleteStudentToModify":
+      return {
+        ...state,
+        studentsToModify: state.studentsToModify.filter(
+          (st) => st.id !== action.payload
+        ),
+      };
+    case "deleteStudents":
+      return {
+        ...state,
+        students: state.students.filter((student) =>
+          state.studentsToModify.includes(student)
+        ),
+      };
+
     default:
       throw new Error("Action unknow");
   }

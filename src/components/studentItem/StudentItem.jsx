@@ -1,3 +1,4 @@
+import { useStudents } from "../../context/studentsContext";
 import "./StudentItem.css";
 
 const statusColor = {
@@ -42,12 +43,25 @@ const statusColor = {
 // ];
 
 function StudentItem({ student }) {
+  const { filter, dispatch } = useStudents();
+
   return (
     <li
       className="list__item"
       style={{ backgroundColor: statusColor[student.status] }}
     >
-      <input type="checkbox" className="options__checkbox" />
+      <input
+        type="checkbox"
+        className="options__checkbox"
+        onChange={(e) => {
+          e.target.checked
+            ? dispatch({ type: "addStudentToModify", payload: student })
+            : dispatch({
+                type: "deleteStudentToModify",
+                payload: student.id,
+              });
+        }}
+      />
       <div className="options__group">
         <span className="options__info">Numero de Control: </span>
         <p>{student.nControl}</p>

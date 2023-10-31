@@ -65,11 +65,12 @@ function Stats() {
     };
   });
 
-  data.push({ id: "all", name: "Todas las carreras", students });
+  data.unshift({ id: "all", name: "Todas las carreras", students });
 
   return (
     <div className={styles.stats}>
       <Search placeholder={"Buscar por tipo de carrera"} />
+
       <div className={styles.graphics}>
         {data.map((el) => (
           <Graphic data={el.students} title={el.name} key={el.id} />

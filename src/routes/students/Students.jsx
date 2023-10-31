@@ -82,7 +82,7 @@ const Students = () => {
       type: "filterStudents",
       payload: { career, status },
     });
-  }, [filter]);
+  }, [career, dispatch, status]);
 
   return (
     <>
@@ -184,7 +184,11 @@ const Students = () => {
             >
               Crear
             </Button>
-            <Button type="delete" title="Elimina Estudiantes">
+            <Button
+              type="delete"
+              title="Elimina Estudiantes"
+              onClick={() => dispatch({ type: "deleteStudents" })}
+            >
               Eliminar
             </Button>
           </div>
